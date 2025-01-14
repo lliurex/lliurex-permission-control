@@ -1,0 +1,3 @@
+#!/bin/bash
+pkexec lliurex-permission-control
+exit 0

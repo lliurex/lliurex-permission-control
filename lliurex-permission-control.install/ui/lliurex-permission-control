@@ -1,0 +1,57 @@
+#!/usr/bin/python3
+
+from PySide2.QtWidgets import QApplication
+from PySide2.QtCore import QUrl
+from PySide2.QtGui import QIcon
+from PySide2.QtQml import QQmlApplicationEngine
+
+import sys
+import os
+import shutil
+import gettext
+gettext.textdomain("lliurex-permission-control")
+_ = gettext.gettext
+
+
+if os.path.exists('/var/run/permissionControl.lock'):
+	print ("  [Lliurex-Permission-Control]: Lliurex-Permission-Control is now running ")
+	msg=_("Lliurex-Permission-Control is now running. Wait a moment and try again.")
+	cmd="kdialog --title 'Lliurex-Permission-Control' --icon 'lliurex-permission-control' --sorry '%s'"%(msg)
+	os.system(cmd)
+	sys.exit(1)
+
+else:
+	try:
+		print("  [Lliurex-Permission-Control]: Checking root")
+		f=open("/var/run/permissionControl.token","w")
+		f.close()
+		os.remove("/var/run/permissionControl.token")
+
+	except:
+		print("  [Lliurex-Permission-Control]: No administration privileges")
+		msg=_("You need administration privileges to run this application.")
+		cmd="kdialog --title 'Lliurex-Permission-Control' --icon 'lliurex-permission-control' --sorry '%s'"%(msg)
+		os.system(cmd)
+		sys.exit(1)
+
+import LliurexPermissionControl		
+app = QApplication()
+engine = QQmlApplicationEngine()
+engine.clearComponentCache()
+context=engine.rootContext()
+permissionControlBridge=LliurexPermissionControl.LliurexPermissionControl()
+context.setContextProperty("permissionControlBridge", permissionControlBridge)
+
+url = QUrl("/usr/share/lliurex-permission-control/rsrc/lliurex-permission-control.qml")
+
+engine.load(url)
+if not engine.rootObjects():
+	sys.exit(-1)
+
+engine.quit.connect(QApplication.quit)
+app.setWindowIcon(QIcon("/usr/share/icons/hicolor/scalable/apps/lliurex-permission-control.svg"));
+ret=app.exec_()
+del engine
+del app
+sys.exit(ret)
+

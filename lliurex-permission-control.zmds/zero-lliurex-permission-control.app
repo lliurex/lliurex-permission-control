@@ -1,0 +1,16 @@
+Name=zero-lliurex-permission-control
+Name[en]=Managing user permissions
+Name[es]=Gestión de permisos de usuarios
+Name[qcv]=Gestió de permisos d'usuaris
+Name[ca@valencia]=Gestió de permisos d'usuaris'
+Name[ca_ES]=Gestió de permisos d'usuaris
+Comment=Utility to manage the use of certain applications by groups of users
+Comment[en]=Utility to manage the use of certain applications by groups of users
+Comment[es]=Utilidad para gestionar el uso de ciertas aplicaciones por parte de grupos de usuarios
+Comment[qcv]=Utilitat per a gestionar l'ús de determinades aplicacions per part de grups d'usuaris
+Comment[ca@valencia]=Utilitat per a gestionar l'ús de determinades aplicacions per part de grups d'usuaris
+Comment[ca_ES]=Utilitat per a gestionar l'ús de determinades aplicacions per part de grups d'usuaris
+Category=System
+Icon=zero-lliurex-permission-control
+ScriptPath=zero-lliurex-permission-control.zmd
+Groups=sudo;admins;teachers

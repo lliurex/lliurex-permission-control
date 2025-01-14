@@ -1,0 +1,94 @@
+# Catalan translations for PACKAGE package
+# Traduccions al català del paquet «PACKAGE».
+# Copyright (C) 2022 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# lliurex <lliurex@gva.es>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-10 09:06+0100\n"
+"PO-Revision-Date: 2025-01-10 09:11+0100\n"
+"Last-Translator: lliurex <lliurex@gva.es>\n"
+"Language-Team: Catalan\n"
+"Language: ca_ES@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: ../lliurex-permission-control.install/ui/lliurex-permission-control:18
+msgid "Lliurex-Permission-Control is now running. Wait a moment and try again."
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/lliurex-permission-control:32
+msgid "You need administration privileges to run this application."
+msgstr "No tenieu privilegis per a executar aquesta aplicació."
+
+#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:25
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:106
+msgid "Settings"
+msgstr "Configuració"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:37
+msgid "Help"
+msgstr "Ajuda"
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:12
+msgid "Permissions configured"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:44
+msgid "Allow students to use docker"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:74
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:60
+msgid "Apply"
+msgstr "Aplica"
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:91
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:104
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:108
+msgid ""
+"The are pending changes to apply.\n"
+"Do you want apply the changes or discard them?"
+msgstr ""
+"Hi ha canvis pendents d’aplicar.\n"
+"Voleu aplicar els canvis o descartar-los?"
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:157
+msgid "Changes applied successfully"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:160
+msgid "There are no options available to configure"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:163
+msgid "Unable to activate permissions to usr docker"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:166
+msgid "Unable to disable permissions to use docker"
+msgstr ""
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:190
+msgid "Apply changes. Wait a moment..."
+msgstr "S’estan aplicant els canvis. Espereu un moment..."
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:202
+msgid "Restoring previous values. Wait a moment..."
+msgstr "S’estan restaurant els valors previs. Espereu un moment..."
+
+#: ../lliurex-permission-control.install/ui/rsrc/Loading.qml:40
+msgid "Loading. Wait a moment..."
+msgstr "S’està carregant. Espereu un moment..."
+
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:82
+msgid "Discard"
+msgstr "Descarta"

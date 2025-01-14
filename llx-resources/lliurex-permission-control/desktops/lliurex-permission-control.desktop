@@ -1,0 +1,23 @@
+[Desktop Entry]
+Categories=LliureX-Administration;
+Comment[es_ES]=Gestiona permisos de usuarios
+Comment=Gestiona permisos de usuarios
+Comment[ca@valencia]=Gestiona permisos d'usuaris'
+Comment[ca_ES.UTF-8@valencia]=Gestiona permisos d'usuaris'
+Encoding=UTF-8
+Exec=pkexec /usr/sbin/lliurex-permission-control
+GenericName[es_ES]=lliurex-permission-control
+GenericName=lliurex-permission-control
+Icon=lliurex-permission-control
+MimeType=
+Name[es_ES]=Lliurex-Permission-Control
+Name=Lliurex-Permission-Control
+Name[ca@valencia]=Lliurex-Permission-Control
+Name[ca_ES.UTF-8@valencia]=Lliurex-Permission-Control
+NoDisplay=true
+StartupNotify=true
+Terminal=false
+TryExec=lliurex-permission-control
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
