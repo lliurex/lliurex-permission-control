@@ -1,0 +1,166 @@
+#! /usr/bin/python3
+
+"""
+    N4D Client
+
+    N4D client cli
+
+    Copyright (C) 2021  Daniel Duran Vecino <daduve@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program. If not, see <http://www.gnu.org/licenses/>.
+"""
+
+import os
+import sys
+import getpass
+import time
+import argparse
+import json
+import tempfile
+import shutil
+
+def cdc_status(file, sgroup):
+    try:
+        solved=False
+        with open(file,'r') as f:
+            for line in f.readlines():
+                if sgroup in line:
+                    solved=True
+                    return solved
+        return solved
+
+    except Exception as e:
+        print('Error %s'%e)
+        sys.exit(1)
+ # def_cdc_status
+
+
+def cdc_enable(file,egroup,tmp_file):
+    try:
+        solved= False
+        #print('tmp_file: %s'%tmp_file)
+        with open(file,'r') as f_orig:
+            with open(tmp_file,'w') as f_tmp:
+                for line in f_orig.readlines():
+                    f_tmp.write(line)
+                    if ('list(set(self.cache_users["students"]' in line) or ('list(set(self.cache_users["teachers"]' in line):
+                        group_line="\t\t\t\tself.cache_users["+'"'+egroup+'"'+"][1].append(user)\n"
+                        group_line2="\t\t\t\tself.cache_users["+'"'+egroup+'"'+"][1] = list(set(self.cache_users["+'"'+egroup+'"'+"][1]))\n"
+                        f_tmp.write(group_line)
+                        f_tmp.write(group_line2)
+            f_tmp.close()
+            shutil.copy(tmp_file,file)
+            os.chmod(file, 0o644)
+            solved=True
+        return solved
+
+    except Exception as e:
+        print('Error %s'%e)
+        sys.exit(1)
+# def_cdc_enable
+
+
+
+def cdc_disable(file,dgroup,tmp_file):
+    try:
+        solved= False
+        #print('tmp_file: %s'%tmp_file)
+        with open(file,'r') as f_orig:
+            with open(tmp_file,'w') as f_tmp:
+                for line in f_orig.readlines():
+                    find_line="self.cache_users["+'"'+dgroup+'"'
+                    if find_line in line:
+                        pass
+                    else:
+                        f_tmp.write(line)
+            f_tmp.close()
+            shutil.copy(tmp_file,file)
+            os.chmod(file, 0o644)
+            solved=True
+        return solved
+
+    except Exception as e:
+        print('Error %s'%e)
+        sys.exit(1)
+# def_cdc_enable
+ 
+
+
+def main():
+
+    cdc_file="/usr/share/cdcmapper/application.py"
+    temp_file=tempfile.NamedTemporaryFile(mode="w",suffix=".py",prefix="TMP_CDC_")
+    tmp_file=temp_file.name
+    
+    parser = argparse.ArgumentParser(description='Get information about running environment')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-e", "--enable",metavar='group',choices=['docker'],help="Enable a group in the system when the user is logging in")
+    group.add_argument("-d", "--disable",metavar='group',choices=['docker'],help="Disable a group in the system when the user is logging in")
+    group.add_argument("-s", "--status",metavar='group',help="Show the status for this group")
+
+    args = parser.parse_args()
+
+    try:
+        #print(args.enable, args.disable, args.status)
+
+        if not os.path.isfile(cdc_file):
+            print("Sorry but the CDC file is not intalled in your system.")
+            sys.exit(1)
+
+        if (args.enable == None and args.disable == None and args.status == None):
+            #print('Deberia mostrarse la ayuda')
+            parser.print_help()
+            sys.exit(1)
+
+        if args.status != None:
+            if cdc_status(cdc_file, args.status):
+                print ('%s group is active'%args.status)
+                sys.exit(0)
+            else:
+                print ('%s group is disable'%args.status)
+                sys.exit(0)
+
+        if args.enable != None:
+            if cdc_status(cdc_file, args.enable):
+                print('%s group was already enabled, sorry do nothing'%args.enable)
+            else:
+                if cdc_enable(cdc_file,args.enable,tmp_file):
+                    print ('%s group is now enabled'%args.enable)
+                    sys.exit(0)
+                else:
+                    print ('%s group is unavailable'%args.enable)
+                    sys.exit(0)
+
+        if args.disable != None:
+            if cdc_status(cdc_file, args.disable):
+                if cdc_disable(cdc_file,args.disable,tmp_file):
+                    print ('%s group is now disabled'%args.disable)
+                    sys.exit(0)
+                else:
+                    print ('%s group is unavailable'%args.disable)
+                    sys.exit(0)
+            else:
+                print('%s group was already disable, sorry do nothing'%args.disable)
+
+
+
+    except Exception as e:
+        print('Error %s'%e)
+        sys.exit(1)
+        
+    sys.exit(0)
+
+if __name__=="__main__":
+    main()
+
+
