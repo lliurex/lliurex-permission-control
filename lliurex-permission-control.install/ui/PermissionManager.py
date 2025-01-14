@@ -9,7 +9,6 @@ import syslog
 class PermissionManager:
 
 	APPLY_CHANGES_SUCCESSFUL=0
-	NO_OPTIONS_AVAILABLE=1
 	APPLY_CHANGES_ENABLE_DOCKER_ERROR=-1
 	APPLY_CHANGES_DISABLE_DOCKER_ERROR=-2
 
@@ -17,10 +16,8 @@ class PermissionManager:
 
 		self.debug=False
 		self.isDockerEnabled=False
-		self.isDockerAvailabled=False
 		self.lockTokenPath="/var/run/permissionControl.lock"
 		self.currentConfig=[self.isDockerEnabled]
-		self.availableOptions=0
 		self._createLockToken()
 		self.getSessionLang()
 		self.clearCache()
@@ -50,7 +47,7 @@ class PermissionManager:
 
 	def _getDockerStatus(self):
 
-		cmd="cdccli -t"
+		cmd="perm-control -s"
 		p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
 		poutput=p.communicate()
 		rc=p.returncode
@@ -84,10 +81,11 @@ class PermissionManager:
 
 		if value:
 			self.writeLog("- Action: enable docker permissions")
+			cmd="perm-control -e"
 		else:
 			self.writeLog("- Action: disable docker permissions")
+			cmd="perm-control -d"
 
-		cmd="cdccli -e"
 		p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
 		poutput=p.communicate()
 		rc=p.returncode

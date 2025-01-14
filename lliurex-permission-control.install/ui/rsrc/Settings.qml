@@ -41,9 +41,9 @@ Rectangle{
 
             PC3.CheckBox {
                 id:dockerControlCb
-                text:i18nd("lliurex-permission-control","Allow students to use docker")
+                text:i18nd("lliurex-permission-control","Allow teachers and students to use docker")
                 checked:permissionControlBridge.isDockerEnabled
-                enabled:permissionControlBridge.isDockerAvailabled
+                enabled:true
                 font.pointSize: 10
                 focusPolicy: Qt.NoFocus
                 Keys.onReturnPressed: dockerControlCb.toggled()
@@ -155,9 +155,6 @@ Rectangle{
         switch (code){
             case 0:
                 msg=i18nd("lliurex-permission-control","Changes applied successfully");
-                break;
-            case 1:
-                msg=i18nd("lliurex-permission-control","There are no options available to configure");
                 break;
             case -1:
                 msg=i18nd("lliurex-permission-control","Unable to activate permissions to usr docker");

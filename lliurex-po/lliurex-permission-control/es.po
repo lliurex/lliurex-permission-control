@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 09:06+0100\n"
-"PO-Revision-Date: 2025-01-10 09:11+0100\n"
+"POT-Creation-Date: 2025-01-14 17:00+0100\n"
+"PO-Revision-Date: 2025-01-14 17:01+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -40,7 +40,7 @@ msgid "Permissions configured"
 msgstr ""
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:44
-msgid "Allow students to use docker"
+msgid "Allow teachers and students to use docker"
 msgstr ""
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:74
@@ -66,22 +66,18 @@ msgid "Changes applied successfully"
 msgstr ""
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:160
-msgid "There are no options available to configure"
-msgstr ""
-
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:163
 msgid "Unable to activate permissions to usr docker"
 msgstr ""
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:166
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:163
 msgid "Unable to disable permissions to use docker"
 msgstr ""
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:190
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:187
 msgid "Apply changes. Wait a moment..."
 msgstr "Aplicando cambios. Espere un momento..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:202
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:199
 msgid "Restoring previous values. Wait a moment..."
 msgstr "Restaurando valores anteriores. Espere un momento..."
 

@@ -61,7 +61,6 @@ class LliurexPermissionControl(QObject):
 	def initBridge(self):
 
 		self._isDockerEnabled=False
-		self._isDockerAvailabled=False
 		self._settingsChanged=False
 		self._showSettingsMessage=[False,"","Ok"]
 		self._closeGui=False
@@ -78,13 +77,9 @@ class LliurexPermissionControl(QObject):
 	def _loadConfig(self):		
 
 		self.isDockerEnabled=LliurexPermissionControl.permissionMan.isDockerEnabled
-		self.isDockerAvailabled=LliurexPermissionControl.permissionMan.isDockerAvailabled
 	
 		self.initialConfig=copy.deepcopy(LliurexPermissionControl.permissionMan.currentConfig)
 		self.currentStack=1
-		
-		if LliurexPermissionControl.permissionMan.availableOptions==0:
-			self.showSettingsMessage=[True,LliurexPermissionControl.permissionMan.NO_OPTIONS_AVAILABLE,"Info"]
 		
 	#def _loadConfig
 
@@ -129,20 +124,6 @@ class LliurexPermissionControl(QObject):
 			self.on_isDockerEnabled.emit()
 
 	#def _setIsDockerEnabled
-
-	def _getIsDockerAvailabled(self):
-
-		return self._isDockerAvailabled
-
-	#def _getIsDockerAvailabled
-
-	def _setIsDockerAvailabled(self,isDockerAvailabled):
-
-		if self._isDockerAvailabled!=isDockerAvailabled:
-			self._isDockerAvailabled=isDockerAvailabled
-			self.on_isDockerAvailabled.emit()
-
-	#def _setIsDockerAvailabled
 
 	def _getSettingsChanged(self):
 
@@ -308,9 +289,9 @@ class LliurexPermissionControl(QObject):
 			runPkexec=True
 
 		if 'valencia' in LliurexPermissionControl.permissionMan.sessionLang:
-			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page=Lliurex-ID-Control.'
+			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page='
 		else:
-			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page=Lliurex-ID-Control'
+			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page='
 		
 		if not runPkexec:
 			self.helpCmd="su -c '%s' $USER"%self.helpCmd
@@ -352,9 +333,6 @@ class LliurexPermissionControl(QObject):
 	on_isDockerEnabled=Signal()
 	isDockerEnabled=Property(bool,_getIsDockerEnabled,_setIsDockerEnabled,notify=on_isDockerEnabled)
 
-	on_isDockerAvailabled=Signal()
-	isDockerAvailabled=Property(bool,_getIsDockerAvailabled,_setIsDockerAvailabled,notify=on_isDockerAvailabled)
-	
 	on_settingsChanged=Signal()
 	settingsChanged=Property(bool,_getSettingsChanged,_setSettingsChanged, notify=on_settingsChanged)
 
