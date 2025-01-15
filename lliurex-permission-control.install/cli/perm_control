@@ -54,8 +54,8 @@ def cdc_enable(file,egroup,tmp_file):
                 for line in f_orig.readlines():
                     f_tmp.write(line)
                     if ('list(set(self.cache_users["students"]' in line) or ('list(set(self.cache_users["teachers"]' in line):
-                        group_line="\t\t\t\tself.cache_users["+'"'+egroup+'"'+"][1].append(user)\n"
-                        group_line2="\t\t\t\tself.cache_users["+'"'+egroup+'"'+"][1] = list(set(self.cache_users["+'"'+egroup+'"'+"][1]))\n"
+                        group_line="                self.cache_users["+'"'+egroup+'"'+"][1].append(user)\n"
+                        group_line2="                self.cache_users["+'"'+egroup+'"'+"][1] = list(set(self.cache_users["+'"'+egroup+'"'+"][1]))\n"
                         f_tmp.write(group_line)
                         f_tmp.write(group_line2)
             f_tmp.close()
