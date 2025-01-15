@@ -1,0 +1,4 @@
+lliurex-permission-control.install/cli/* /usr/bin
+lliurex-permission-control.install/ui/* /usr/share/lliurex-permission-control/
+lliurex-permission-control.install/logrotate.d/* /etc/logrotate.d/
+lliurex-permission-control.install/rsyslog.d/* /etc/rsyslog.d/

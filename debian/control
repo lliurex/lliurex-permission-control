@@ -1,0 +1,15 @@
+Source: lliurex-permission-control
+Section: qml
+Priority: optional
+Maintainer: lliurex <lliurex@gva.es>
+Build-Depends: debhelper-compat (= 12),llxsrchelper,python3-poinstaller,zero-dev
+Standards-Version: 4.4.1
+Homepage: http://lliurex.net
+Vcs-Browser: https://svn.lliurex.net/jammy/lliurex-permission-control
+Vcs-Git: https://github.com/lliurex/lliurex-permission-control
+
+Package: lliurex-permission-control
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3, python3-pyside2.qtqml, python3-pyside2.qtquick, python3-pyside2.qtgui, python3-pyside2.qtwidgets, python3-pyside2.qtquickwidgets, zero-center
+Description: App to manage integration with CDC
+ This package provides a gui to manage the ingregation with the CDC and zomando to launch it
