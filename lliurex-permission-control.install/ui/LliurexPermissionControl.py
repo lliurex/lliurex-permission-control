@@ -61,6 +61,7 @@ class LliurexPermissionControl(QObject):
 	def initBridge(self):
 
 		self._isDockerEnabled=False
+		self.isLoadError=False
 		self._settingsChanged=False
 		self._showSettingsMessage=[False,"","Ok"]
 		self._closeGui=False
@@ -77,9 +78,11 @@ class LliurexPermissionControl(QObject):
 	def _loadConfig(self):		
 
 		self.isDockerEnabled=LliurexPermissionControl.permissionMan.isDockerEnabled
-	
+		self.isLoadError=LliurexPermissionControl.permissionMan.isLoadError
 		self.initialConfig=copy.deepcopy(LliurexPermissionControl.permissionMan.currentConfig)
 		self.currentStack=1
+		if self.isLoadError:
+			self.showSettingsMessage=[True,LliurexPermissionControl.permissionMan.GET_STATUS_ERROR,"Error"]
 		
 	#def _loadConfig
 

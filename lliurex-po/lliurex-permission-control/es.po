@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 17:00+0100\n"
-"PO-Revision-Date: 2025-01-14 17:01+0100\n"
+"POT-Creation-Date: 2025-01-15 09:25+0100\n"
+"PO-Revision-Date: 2025-01-15 09:31+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../lliurex-permission-control.install/ui/lliurex-permission-control:18
 msgid "Lliurex-Permission-Control is now running. Wait a moment and try again."
-msgstr ""
+msgstr "Lliurex-Permission-Control se esta ejecutando. Espere un momento y pruebe otra vez."
 
 #: ../lliurex-permission-control.install/ui/lliurex-permission-control:32
 msgid "You need administration privileges to run this application."
@@ -37,11 +37,11 @@ msgstr "Ayuda"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:12
 msgid "Permissions configured"
-msgstr ""
+msgstr "Permisos configurados"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:44
-msgid "Allow teachers and students to use docker"
-msgstr ""
+msgid "Allow teachers and students groups to use docker"
+msgstr "Permitir a los grupos Profesores y Alumnos usar docker"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:74
 #: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:60
@@ -63,21 +63,25 @@ msgstr ""
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:157
 msgid "Changes applied successfully"
-msgstr ""
+msgstr "Cambios aplicados correctamente"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:160
 msgid "Unable to activate permissions to usr docker"
-msgstr ""
+msgstr "No es posible activar los permisos para usar docker"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:163
 msgid "Unable to disable permissions to use docker"
-msgstr ""
+msgstr "No es posible desactivar los permisos para usar docker"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:187
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:166
+msgid "Unable to read permissions configuration"
+msgstr "No es posible leer la configuración de los permisos"
+
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:190
 msgid "Apply changes. Wait a moment..."
 msgstr "Aplicando cambios. Espere un momento..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:199
+#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:202
 msgid "Restoring previous values. Wait a moment..."
 msgstr "Restaurando valores anteriores. Espere un momento..."
 

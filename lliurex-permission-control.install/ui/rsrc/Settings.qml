@@ -41,7 +41,7 @@ Rectangle{
 
             PC3.CheckBox {
                 id:dockerControlCb
-                text:i18nd("lliurex-permission-control","Allow teachers and students to use docker")
+                text:i18nd("lliurex-permission-control","Allow teachers and students groups to use docker")
                 checked:permissionControlBridge.isDockerEnabled
                 enabled:true
                 font.pointSize: 10
@@ -161,6 +161,9 @@ Rectangle{
                 break;
             case -2:
                 msg=i18nd("lliurex-permission-control","Unable to disable permissions to use docker");
+                break;
+            case -3:
+                msg=i18nd("lliurex-permission-control","Unable to read permissions configuration")
                 break;
             default:
                 break;

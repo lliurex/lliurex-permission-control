@@ -11,11 +11,13 @@ class PermissionManager:
 	APPLY_CHANGES_SUCCESSFUL=0
 	APPLY_CHANGES_ENABLE_DOCKER_ERROR=-1
 	APPLY_CHANGES_DISABLE_DOCKER_ERROR=-2
+	GET_STATUS_ERROR=-3
 
 	def __init__(self):
 
 		self.debug=False
 		self.isDockerEnabled=False
+		self.isLoadError=False
 		self.lockTokenPath="/var/run/permissionControl.lock"
 		self.currentConfig=[self.isDockerEnabled]
 		self._createLockToken()
@@ -39,24 +41,30 @@ class PermissionManager:
 		
 		self.writeLog("Init session in lliurex-permission-control GUI")
 		self.writeLog("User login in GUI: %s"%self.currentUser)
-		self._getDockerStatus()
 		self.writeLog("Initial configuration:")
-		self.writeLog("- docker enabled: %s"%str(self.isDockerEnabled))
+		self._getDockerStatus()
 
 	#def loadConfig
 
 	def _getDockerStatus(self):
 
-		cmd="perm-control -s"
+		cmd="perm_control -s docker"
 		p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-		poutput=p.communicate()
+		poutput=p.communicate()[0]
 		rc=p.returncode
+		ret=poutput.decode()
 		
 		if rc==0:
-			self.isDockerEnabled=True
+			if 'active' in ret:
+				self.isDockerEnabled=True
+			elif 'disable' in ret:
+				self.isDockerEnabled=False
+
+			self.writeLog("- docker enabled: %s"%str(self.isDockerEnabled))
 		else:
-			self.isDockerEnabled=False
-		
+			self.isLoadError=True
+			self.writeLog("- docker: unable to read status")
+	
 		self.currentConfig[0]=self.isDockerEnabled
 
 	#def _getDockerStatus
@@ -81,19 +89,23 @@ class PermissionManager:
 
 		if value:
 			self.writeLog("- Action: enable docker permissions")
-			cmd="perm-control -e"
+			cmd="perm_control -e docker"
 		else:
 			self.writeLog("- Action: disable docker permissions")
-			cmd="perm-control -d"
+			cmd="perm_control -d docker"
 
 		p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-		poutput=p.communicate()
+		poutput=p.communicate()[0]
 		rc=p.returncode
+		ret=poutput.decode()
 
 		if rc==0:
-			self.writeLog("- Result: Change apply successfully")
-			return False
-			
+			if 'enabled' in ret or 'disabled' in ret:
+				self.writeLog("- Result: Change apply successfully")
+				return False
+			elif 'unavailable':
+				self.writeLog("- Result: group is unavailable")
+				return True
 		else:
 			self.writeLog("- Result: Failed to apply change")
 			return True
