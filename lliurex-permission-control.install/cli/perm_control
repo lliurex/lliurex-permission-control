@@ -160,14 +160,14 @@ def main():
     group.add_argument("-e", "--enable",metavar='group',choices=['docker'],help="Enable a group in the system when the user is logging in")
     group.add_argument("-d", "--disable",metavar='group',choices=['docker'],help="Disable a group in the system when the user is logging in")
     group.add_argument("-s", "--status",metavar='group',help="Show the status for this group")
-    group.add_argument("-l", "--list",metavar='group',help="Show the groups that can be modified")
+    group.add_argument("-l", "--list", action='store_true',help="Show the groups that can be modified")
 
     args = parser.parse_args()
 
     try:
-        #print(args.enable, args.disable, args.status, args.users)
+        #print(args.enable, args.disable, args.status, args.users, args.list)
 
-        if (args.enable == None and args.disable == None and args.status == None):
+        if (args.enable == None and args.disable == None and args.status == None and args.list == None):
             #print('Deberia mostrarse la ayuda')
             parser.print_help()
             sys.exit(1)
@@ -245,6 +245,29 @@ def main():
             else:
                 print ("You don't have specified the users, alu or doc.")
                 sys.exit(0)
+
+
+        if args.list:
+            list_editable=[]
+            solved=False
+            for file in os.listdir(r'%s'%cdc_dir_orig):
+                if file.endswith(".json"):
+                    file_json=cdc_dir_modify+file
+                    if not os.path.isfile(file_json):
+                        file_json=cdc_dir_orig+file
+                    with open(file_json, 'r+') as fjson:
+                        data=json.load(fjson)
+                    name=data['name']
+                    editable=data['editable']
+                    if editable:
+                        list_editable.append(name)
+                        solved=True
+            if solved:
+                print('Editable groups :%s'%list_editable)
+                sys.exit(0)
+            else:
+                print("You don't have any editable group.")
+
 
 
 
