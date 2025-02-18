@@ -29,93 +29,143 @@ import json
 import tempfile
 import shutil
 
-def cdc_status(file, sgroup):
-    try:
-        solved=False
-        with open(file,'r') as f:
-            for line in f.readlines():
-                if sgroup in line:
-                    solved=True
-                    return solved
-        return solved
+cdc_dir_orig="/usr/share/cdcmapper/"
+cdc_dir_modify="/etc/cdcmapper/"
+temp_file=tempfile.NamedTemporaryFile(mode="w",suffix=".py",prefix="TMP_CDC_")
+tmp_file=temp_file.name
 
+
+def dprint(txt):
+    try:
+        DEBUG=False
+        if DEBUG:
+            print(txt)
     except Exception as e:
-        print('Error %s'%e)
+        print('[dprint] Error %s'%e)        
+#def_dprint
+
+
+def dir_exists (dir):
+    try:
+        dprint("dir_exists start")
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        return True
+    except Exception as e:
+        return False        
+#def_dir_exists
+
+
+
+def json_status(file):
+    try:
+        dprint("Json_status start")
+        solved=editable=alu=doc=adm=False
+        dprint('Opening json file:%s'%file)
+        with open(file, 'r+') as fjson:
+            data=json.load(fjson)
+        alu=data['alu']
+        doc=data['doc']
+        adm=data['adm']
+        editable=data['editable']
+        solved=True
+        dprint("Json_status[Solved:%s, Editable:%s, Alu:%s, Doc:%s, Adm:%s]"%(solved,editable,alu,doc,adm))
+        return [solved,editable,alu,doc,adm]
+    except Exception as e:
+        print('[json_status] Json file: %s has an error %s'%(file,e))
+        return [False, False,False,False,False]
+#def_jsonstatus
+
+
+def cdc_status_dir(dir_json,sgroup):
+    try:
+        dprint("cdc_status_dir start")
+        sgroup_status=[False,False,False,False,False]
+        file_extend=False
+        if dir_exists(dir_json):
+            for file in os.listdir(r'%s'%dir_json):
+                if sgroup in file:
+                    if file.endswith(".json"):
+                        file_extend=dir_json+file
+                        sgroup_status=json_status(file_extend)
+        dprint("cdc_status_dir Appending file %s"%file_extend)
+        sgroup_status.append(str(file_extend))
+        return sgroup_status
+    except Exception as e:
+        print('[cdc_status_dir] Error %s'%e)
+        sys.exit(1)
+ # def_cdc_status_dir
+
+
+def cdc_status(sgroup):
+    try:
+        dprint("cdc_status start")
+        cdc_status_dir_solved=cdc_status_dir(cdc_dir_modify,sgroup)
+        if cdc_status_dir_solved[0]:
+                pass
+        else:
+            cdc_status_dir_solved=cdc_status_dir(cdc_dir_orig,sgroup)
+            if cdc_status_dir_solved[0]:
+                pass
+        dprint("cdc_status ended")
+        dprint(cdc_status_dir_solved)
+        return cdc_status_dir_solved
+    except Exception as e:
+        print('[cdc_status] Error %s'%e)
         sys.exit(1)
  # def_cdc_status
 
 
-def cdc_enable(file,egroup,tmp_file):
+def json_modify(file,user,enable):
     try:
-        solved= False
-        #print('tmp_file: %s'%tmp_file)
-        with open(file,'r') as f_orig:
-            with open(tmp_file,'w') as f_tmp:
-                for line in f_orig.readlines():
-                    f_tmp.write(line)
-                    if ('list(set(self.cache_users["students"]' in line) or ('list(set(self.cache_users["teachers"]' in line):
-                        group_line="                self.cache_users["+'"'+egroup+'"'+"][1].append(user)\n"
-                        group_line2="                self.cache_users["+'"'+egroup+'"'+"][1] = list(set(self.cache_users["+'"'+egroup+'"'+"][1]))\n"
-                        f_tmp.write(group_line)
-                        f_tmp.write(group_line2)
-            f_tmp.close()
-            shutil.copy(tmp_file,file)
-            os.chmod(file, 0o644)
-            solved=True
-        return solved
-
+        dprint("json_modify start")
+        dprint("file:%s"%file)
+        json_file=file
+        with open(json_file, 'r+') as filejson:
+            my_data = json.load(filejson)
+        dprint("Json data: %s"%my_data)
+        dprint('User:%s - Enable:%s'%(user,enable))
+        dprint(my_data[user])
+        if my_data[user]==enable:
+            dprint("Don't nothing.... value is ok")
+            return False
+        else:
+            #Copy json file to modify files if it necessary
+            if cdc_dir_orig in file:
+                #copy orig file in modified directory
+                dprint('Modify file....shutilcopy')
+                shutil.copy(file,cdc_dir_modify)
+                njson_file=cdc_dir_modify+os.path.basename(file)
+            else:
+                njson_file=file
+            with open(njson_file, 'r+') as filejson:
+                my_data = json.load(filejson)
+            my_data[user]=enable  
+            with open(njson_file, 'w') as filejson:
+                json.dump(my_data, filejson)
+            return True
     except Exception as e:
-        print('Error %s'%e)
+        print('[json_modify] Error %s'%e)
         sys.exit(1)
-# def_cdc_enable
+#def_json_modify
 
 
-
-def cdc_disable(file,dgroup,tmp_file):
-    try:
-        solved= False
-        #print('tmp_file: %s'%tmp_file)
-        with open(file,'r') as f_orig:
-            with open(tmp_file,'w') as f_tmp:
-                for line in f_orig.readlines():
-                    find_line="self.cache_users["+'"'+dgroup+'"'
-                    if find_line in line:
-                        pass
-                    else:
-                        f_tmp.write(line)
-            f_tmp.close()
-            shutil.copy(tmp_file,file)
-            os.chmod(file, 0o644)
-            solved=True
-        return solved
-
-    except Exception as e:
-        print('Error %s'%e)
-        sys.exit(1)
-# def_cdc_enable
- 
 
 
 def main():
-
-    cdc_file="/usr/share/cdcmapper/application.py"
-    temp_file=tempfile.NamedTemporaryFile(mode="w",suffix=".py",prefix="TMP_CDC_")
-    tmp_file=temp_file.name
     
     parser = argparse.ArgumentParser(description='Get information about running environment')
+    parser.add_argument("-u", "--users",metavar='group',choices=['alu','doc','adm'],help="Select the group alu or doc")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-e", "--enable",metavar='group',choices=['docker'],help="Enable a group in the system when the user is logging in")
     group.add_argument("-d", "--disable",metavar='group',choices=['docker'],help="Disable a group in the system when the user is logging in")
     group.add_argument("-s", "--status",metavar='group',help="Show the status for this group")
+    group.add_argument("-l", "--list",metavar='group',help="Show the groups that can be modified")
 
     args = parser.parse_args()
 
     try:
-        #print(args.enable, args.disable, args.status)
-
-        if not os.path.isfile(cdc_file):
-            print("Sorry but the CDC file is not intalled in your system.")
-            sys.exit(1)
+        #print(args.enable, args.disable, args.status, args.users)
 
         if (args.enable == None and args.disable == None and args.status == None):
             #print('Deberia mostrarse la ayuda')
@@ -123,39 +173,83 @@ def main():
             sys.exit(1)
 
         if args.status != None:
-            if cdc_status(cdc_file, args.status):
-                print ('%s group is active'%args.status)
-                sys.exit(0)
+            #cdc_status returs [solved,editable,alu,doc,adm,json_file]
+            cdc_status_solved=cdc_status(args.status)
+            dprint("cdc_status_solved=%s"%cdc_status_solved)
+            if cdc_status_solved[0]:
+                if args.users=='alu':
+                    print ("%s['alu']:%s "%(args.status,cdc_status_solved[2]))
+                    sys.exit(0)
+                if args.users=='doc':
+                    print ("%s['doc']:%s "%(args.status,cdc_status_solved[3]))
+                    sys.exit(0)
+                if args.users=='adm':
+                    print ("%s['adm']:%s "%(args.status,cdc_status_solved[4]))
+                    sys.exit(0)
             else:
-                print ('%s group is disable'%args.status)
+                print ('%s group is not defined'%args.status)
                 sys.exit(0)
+            print ("%s['alu']:%s - %s['doc']:%s - %s['adm']:%s"%(args.status,cdc_status_solved[2],args.status,cdc_status_solved[3],args.status,cdc_status_solved[4]))
+            sys.exit(0)
+
 
         if args.enable != None:
-            if cdc_status(cdc_file, args.enable):
-                print('%s group was already enabled, sorry do nothing'%args.enable)
-            else:
-                if cdc_enable(cdc_file,args.enable,tmp_file):
-                    print ('%s group is now enabled'%args.enable)
-                    sys.exit(0)
+            if args.users != None:
+                cdc_status_solved=cdc_status(args.enable)
+                dprint("cdc_status_solved=%s"%cdc_status_solved)
+                json_file=cdc_status_solved[5]
+                #if cdc_status_solved[0] true, the group is defined, else we have to defined it in modify directory.
+                #cdc_status returs [solved,editable,alu,doc,adm,json_file]
+                if cdc_status_solved[0]:
+                    if cdc_status_solved[1]:
+                        json_modify_solved=json_modify(json_file,args.users,True)
+                        if json_modify_solved:
+                            print('%s group has been enabled in %s users.'%(args.enable,args.users))
+                            sys.exit(0)
+                        else:
+                            print('%s group was already enabled, sorry do nothing'%args.enable)
+                            sys.exit(0)
+                    else:
+                        print ('Sorry do nothing because %s group is not editable.'%args.enable)
+                        sys.exit(0)
                 else:
-                    print ('%s group is unavailable'%args.enable)
+                    print ('%s: This group is not in Lliurex Perm System integrated.'%args.enable)
                     sys.exit(0)
+            else:
+                print ("You don't have specified the users, alu or doc.")
+                sys.exit(0)
+
 
         if args.disable != None:
-            if cdc_status(cdc_file, args.disable):
-                if cdc_disable(cdc_file,args.disable,tmp_file):
-                    print ('%s group is now disabled'%args.disable)
-                    sys.exit(0)
+            if args.users != None:
+                cdc_status_solved=cdc_status(args.disable)
+                dprint("cdc_status_solved=%s"%cdc_status_solved)
+                json_file=cdc_status_solved[5]
+                #if cdc_status_solved[0] true, the group is defined, else we have to defined it in modify directory.
+                #cdc_status returs [solved,editable,alu,doc,adm,json_file]
+                if cdc_status_solved[0]:
+                    if cdc_status_solved[1]:
+                        json_modify_solved=json_modify(json_file,args.users,False)
+                        if json_modify_solved:
+                            print('%s group has been disabled in %s users.'%(args.disable,args.users))
+                            sys.exit(0)
+                        else:
+                            print('%s group was already disabled, sorry do nothing'%args.disable)
+                            sys.exit(0)
+                    else:
+                        print ('Sorry do nothing because %s group is not editable.'%args.disable)
+                        sys.exit(0)
                 else:
-                    print ('%s group is unavailable'%args.disable)
+                    print ('%s: This group is not in Lliurex Perm System integrated.'%args.disable)
                     sys.exit(0)
             else:
-                print('%s group was already disable, sorry do nothing'%args.disable)
+                print ("You don't have specified the users, alu or doc.")
+                sys.exit(0)
 
 
 
     except Exception as e:
-        print('Error %s'%e)
+        print('[Main] Error %s'%e)
         sys.exit(1)
         
     sys.exit(0)
