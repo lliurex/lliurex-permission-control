@@ -1,6 +1,6 @@
-import QtQuick 2.6
-import QtQuick.Controls 2.6
-import QtQuick.Layouts 1.12
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 
 GridLayout{
@@ -10,8 +10,10 @@ GridLayout{
     columnSpacing:10
 
     Rectangle{
-        width:160
-        height:230
+        width:185
+        Layout.minimumHeight:370
+        Layout.preferredHeight:370
+        Layout.fillHeight:true
         border.color: "#d3d3d3"
 
         GridLayout{
@@ -21,13 +23,26 @@ GridLayout{
             rowSpacing:0
 
             MenuOptionBtn {
-                id:settingsItem
-                optionText:i18nd("lliurex-permission-control","Settings")
-                optionIcon:"/usr/share/icons/breeze/actions/22/configure.svg"
+                id:studentsItem
+                optionText:i18nd("lliurex-permission-control","Permission for students")
+                optionIcon:"/usr/share/icons/breeze/actions/22/group.svg"
                 optionEnabled:true
                 Connections{
                     function onMenuOptionClicked(){
-                        permissionControlBridge.manageTransitions(0)
+                        mainStackBridge.manageTransitions(0)
+                    }
+                }
+            }
+
+            MenuOptionBtn {
+                id:teachersItem
+                optionText:i18nd("lliurex-permission-control","Permission for teachers")
+                optionIcon:"/usr/share/icons/breeze/actions/22/user.svg"
+                visible:mainStackBridge.isAdminUser
+                Connections{
+                    function onMenuOptionClicked(){
+                        mainStackBridge.manageTransitions(1)
+                   
                     }
                 }
             }
@@ -38,7 +53,7 @@ GridLayout{
                 optionIcon:"/usr/share/icons/breeze/actions/22/help-contents.svg"
                 Connections{
                     function onMenuOptionClicked(){
-                        permissionControlBridge.openHelp();
+                        mainStackBridge.openHelp();
                     }
                 }
             }
@@ -47,19 +62,22 @@ GridLayout{
 
     StackView{
         id: optionsView
-        property int currentIndex:permissionControlBridge.currentOptionsStack
-        implicitHeight: 230
+        property int currentIndex:mainStackBridge.currentOptionsStack
         Layout.fillWidth:true
         Layout.fillHeight: true
-        
-        initialItem:settingsView
+        Layout.alignment:Qt.AlignHCenter
+       
+        initialItem:studentsView
 
         onCurrentIndexChanged:{
             switch (currentIndex){
                 case 0:
-                    optionsView.replace(settingsView)
+                    optionsView.replace(studentsView)
                     break;
-           }
+                case 1:
+                    optionsView.replace(teachersView)
+                    break;
+            }
         }
 
         replaceEnter: Transition {
@@ -80,12 +98,18 @@ GridLayout{
         }
 
         Component{
-            id:settingsView
-            Settings{
-                id:settings
+            id:studentsView
+            StudentSettings{
+                id:studentSettings
             }
         }
-
+        Component{
+            id:teachersView
+            TeacherSettings{
+                id:teacherSettings
+            }
+        }
+       
     }
 }
 

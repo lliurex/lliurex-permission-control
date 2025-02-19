@@ -21,9 +21,7 @@ Dialog {
 
     onVisibleChanged:{
         if (!this.visible && xButton){
-            if (permissionControlBridge.showChangesDialog){
-                cancelDialogClicked()
-            }
+            cancelDialogClicked()
         }else{
             xButton=true
         }
@@ -31,7 +29,7 @@ Dialog {
 
     contentItem: Rectangle {
         color: "#ebeced"
-        implicitWidth: 400
+        implicitWidth: 500
         implicitHeight: 105
         anchors.topMargin:5
         anchors.leftMargin:5
@@ -71,7 +69,7 @@ Dialog {
             onClicked:{
                 xButton=false
                 dialogApplyClicked()
-                permissionControlBridge.manageSettingsDialog("Accept")
+                mainStackBridge.manageSettingsDialog("Accept")
             }
         }
 
@@ -93,7 +91,7 @@ Dialog {
             onClicked:{
                 xButton=false
                 discardDialogClicked(),
-                permissionControlBridge.manageSettingsDialog("Discard")
+                mainStackBridge.manageSettingsDialog("Discard")
             }
         }
 

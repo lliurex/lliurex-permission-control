@@ -34,13 +34,19 @@ else:
 		os.system(cmd)
 		sys.exit(1)
 
-import LliurexPermissionControl		
+import Core
+c=Core.Core.get_core()
+
 app = QApplication()
 engine = QQmlApplicationEngine()
 engine.clearComponentCache()
 context=engine.rootContext()
-permissionControlBridge=LliurexPermissionControl.LliurexPermissionControl()
-context.setContextProperty("permissionControlBridge", permissionControlBridge)
+mainStackBridge=c.mainStack
+studentStackBridge=c.studentStack
+teacherStackBridge=c.teacherStack
+context.setContextProperty("mainStackBridge", mainStackBridge)
+context.setContextProperty("studentStackBridge",studentStackBridge)
+context.setContextProperty("teacherStackBridge",teacherStackBridge)
 
 url = QUrl("/usr/share/lliurex-permission-control/rsrc/lliurex-permission-control.qml")
 
