@@ -29,8 +29,8 @@ import json
 import tempfile
 import shutil
 
-cdc_dir_orig="/usr/share/cdcmapper/"
-cdc_dir_modify="/etc/cdcmapper/"
+cdc_dir_orig="/usr/share/cdc-mapper/groups"
+cdc_dir_modify="/etc/cdc-mapper/"
 temp_file=tempfile.NamedTemporaryFile(mode="w",suffix=".py",prefix="TMP_CDC_")
 tmp_file=temp_file.name
 
