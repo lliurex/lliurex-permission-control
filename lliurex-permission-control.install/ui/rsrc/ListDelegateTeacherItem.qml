@@ -41,9 +41,9 @@ Components.ListItem{
             ToolTip.visible: hovered
             ToolTip.text:{
                 if (permissionCheck.checked){
-                    i18nd("lliurex-permission-control","Check to deny users in teachers groups to use this application")
+                    i18nd("lliurex-permission-control","Check to remove teachers users from this group")
                 }else{
-                    i18nd("lliurex-permission-control","Check to allow users in teachers groups to use this application")                   
+                    i18nd("lliurex-permission-control","Check to add teachers users to this group")                   
                 }
             }
 

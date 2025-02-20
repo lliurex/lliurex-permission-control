@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 13:27+0100\n"
-"PO-Revision-Date: 2025-02-20 13:28+0100\n"
+"POT-Creation-Date: 2025-02-20 14:03+0100\n"
+"PO-Revision-Date: 2025-02-20 14:03+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -87,9 +87,30 @@ msgstr "Aplicando cambios. Espere un momento..."
 msgid "Restoring previous values. Wait a moment..."
 msgstr "Restaurando valores anteriores. Espere un momento..."
 
+#: ../lliurex-permission-control.install/ui/rsrc/StudentList.qml:53
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherList.qml:53
+msgid "No permission found to configure"
+msgstr "No se han encontrado permisos para configurar"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:44
+msgid "Check to remove students users from this group"
+msgstr "Haga clic para eliminar usuarios del grupo Alumnos de este grupo"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:46
+msgid "Check to add studentes users to this group"
+msgstr "Haga clic para añadir los usuarios del grupo Alumnos a este grupo"
+
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:12
 msgid "Permission available for teachers"
 msgstr "Permisos disponibles para Profesores"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:44
+msgid "Check to remove teachers users from this group"
+msgstr "Haga clic para eliminar usuarios del grupo Profesores de este grupo"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:46
+msgid "Check to add teachers users to this group"
+msgstr "Haga clic para añadir los usuarios del grupo Profesores a este grupo"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Loading.qml:40
 msgid "Loading. Wait a moment..."

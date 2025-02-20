@@ -50,7 +50,7 @@ Rectangle {
                 anchors.centerIn: parent
                 width: parent.width - (units.largeSpacing * 4)
                 visible:teachersList.count>0?false:true
-                text:i18nd("lliurex-permission-control"," No permission found to configure")
+                text:i18nd("lliurex-permission-control","No permission found to configure")
             }
       } 
     }
