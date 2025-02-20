@@ -116,6 +116,8 @@ class PermissionManager:
 
 		errorCount=0
 
+		self._getStudentsConfig()
+		
 		for item in newConfig:
 			if newConfig[item]!=self.studentsInfo[item]:
 				if newConfig[item]:
@@ -140,7 +142,7 @@ class PermissionManager:
 				else:
 					self.writeLog("- Result: Failed to apply change")
 					errorCount+=1
-					self._updateStudentsData(item,-1)
+					self._updateStudentsData(item,1)
 	
 		if errorCount==0:
 			return [True,PermissionManager.APPLY_CHANGES_SUCCESSFUL]

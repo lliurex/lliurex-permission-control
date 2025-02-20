@@ -113,7 +113,6 @@ class Bridge(QObject):
 	@Slot('QVariantList')
 	def manageStudentsChecked(self,value):
 
-		self.showStudentSettingsMessage=[False,"","Ok"]
 		permissionId=value[0]
 		isEnabled=value[1]
 
@@ -129,9 +128,9 @@ class Bridge(QObject):
 	@Slot()
 	def applyStudentsChanges(self):
 
-		self.showStudentSettingsMessage=[False,"","Ok"]
-		self.core.mainStack.closePopUp=False
 		self.showStudentChangesDialog=False
+		self.core.mainStack.closePopUp=False
+		self.manageStudentFeedBack()
 		self.updateStudentsInfoT=UpdateStudentsInfo(self.studentsInfo)
 		self.updateStudentsInfoT.start()
 		self.updateStudentsInfoT.finished.connect(self._updateStudentsInfoRet)
@@ -140,31 +139,30 @@ class Bridge(QObject):
 
 	def _updateStudentsInfoRet(self):
 
+		self.studentSettingsChanged=False
+		self._updateStudentsConfig()
+
 		if self.updateStudentsInfoT.ret[0]:
-			self._updateStudentsConfig()
+			self.core.mainStack.closePopUp=True
 			self.showStudentSettingsMessage=[True,self.updateStudentsInfoT.ret[1],"Ok"]
 			self.core.mainStack.closeGui=True
+			if self.core.mainStack.moveToStack!="":
+				self.manageStudentFeedBack()
+				self.core.mainStack.manageTransitions(self.core.mainStack.moveToStack)
 		else:
+			self.core.mainStack.closePopUp=True
 			self.showStudentSettingsMessage=[True,self.updateStudentsInfoT.ret[1],"Error"]
 			self.core.mainStack.closeGui=False
 			self.core.mainStack.moveToStack=""
-
-		if self.core.mainStack.moveToStack!="":
-			self.core.mainStack.currentOptionsStack=self.core.mainStack.moveToStack
-			self.showStudentSettingsMessage=[False,"","Info"]
-			self.core.mainStack.moveToStack=""
-
-		self.studentSettingsChanged=False
-		self.core.mainStack.closePopUp=True
 
 	#def _applyUserChanges
 
 	@Slot()
 	def cancelStudentsChanges(self):
 
-		self.showStudentSettingsMessage=[False,"","Ok"]
 		self.core.mainStack.closePopUp=False
 		self.showStudentChangesDialog=False
+		self.manageStudentFeedBack()
 		self._cancelStudentsChanges()
 
 	#def cancelStudentsChanges
@@ -182,12 +180,29 @@ class Bridge(QObject):
 
 	#def _cancelStudentChanges
 
+	def _updateStudentsModelData(self):
+
+		updateInfo=Bridge.permissionMan.studentsData
+		if len(updateInfo)>0:
+			for i in range(len(updateInfo)):
+				index=self._studentsModel.index(i)
+				self._studentsModel.setData(index,"showResult",-1)
+	
+	#def _updateStuadenModelData
+
 	def _updateStudentsConfig(self):
 
 		self.studentsInfo=copy.deepcopy(Bridge.permissionMan.studentsInfo)
 		self._updateStudentsModel()
 	
 	#def _updateUsersConfig
+
+	def manageStudentFeedBack(self):
+
+		self._updateStudentsModelData()
+		self.showStudentSettingsMessage=[False,"","Info"]
+
+	#def manageStudentFeedBack
 
 	on_studentSettingsChanged=Signal()
 	studentSettingsChanged=Property(bool,_getStudentSettingsChanged,_setStudentSettingsChanged, notify=on_studentSettingsChanged)

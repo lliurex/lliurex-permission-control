@@ -21,7 +21,9 @@ Dialog {
 
     onVisibleChanged:{
         if (!this.visible && xButton){
-            cancelDialogClicked()
+            if (studentStackBridge.showStudentChangesDialog || teacherStackBridge.showTeacherChangesDialog){
+                cancelDialogClicked()
+            }
         }else{
             xButton=true
         }
@@ -68,8 +70,8 @@ Dialog {
             Keys.onEnterPressed: dialogApplyBtn.clicked()
             onClicked:{
                 xButton=false
+                mainStackBridge.manageSettingsDialog("Apply")
                 dialogApplyClicked()
-                mainStackBridge.manageSettingsDialog("Accept")
             }
         }
 
@@ -90,8 +92,8 @@ Dialog {
             Keys.onEnterPressed: dialogDiscardBtn.clicked()
             onClicked:{
                 xButton=false
-                discardDialogClicked(),
                 mainStackBridge.manageSettingsDialog("Discard")
+                discardDialogClicked()
             }
         }
 
@@ -112,6 +114,7 @@ Dialog {
             Keys.onEnterPressed: dialogCancelBtn.clicked()
             onClicked:{
                 xButton:false
+                mainStackBridge.manageSettingsDialog("Cancel")
                 cancelDialogClicked()
             }
         }

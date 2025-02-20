@@ -135,6 +135,7 @@ class Bridge(QObject):
 			elif self.core.teacherStack.teacherSettingsChanged:
 				self.core.teacherStack.showTeacherChangesDialog=True
 			else:
+				self.core.studentStack.manageStudentFeedBack()
 				self.currentOptionsStack=stack
 				self.moveToStack=""
 	
@@ -143,7 +144,7 @@ class Bridge(QObject):
 	@Slot(str)
 	def manageSettingsDialog(self,action):
 		
-		if action=="Accept":
+		if action=="Apply":
 			if self.core.studentStack.studentSettingsChanged:
 				self.core.studentStack.applyStudentsChanges()
 			elif self.core.teacherStack.teacherSettingsChanged:
