@@ -69,7 +69,6 @@ Rectangle{
             Keys.onEnterPressed: applyBtn.clicked()
             onClicked:{
                 applyChanges()
-                closeTimer.stop()
                 teacherStackBridge.applyTeachersChanges()
             }
         }
@@ -86,7 +85,6 @@ Rectangle{
             Keys.onEnterPressed: cancelBtn.clicked()
             onClicked:{
                 discardChanges()
-                closeTimer.stop()
                 teacherStackBridge.cancelTeachersChanges()
             }
         }
@@ -108,7 +106,6 @@ Rectangle{
             }
             function onCancelDialogClicked(){
                 closeTimer.stop()
-                mainStackBridge.manageSettingsDialog("Cancel")
             }
 
         }
@@ -118,18 +115,15 @@ Rectangle{
      }
 
     Timer{
-        id:timer
+        id:changesTimer
     }
 
-    Timer{
-        id:delayTimer
-    }
-
-    function delay(delayTime,cb){
-        timer.interval=delayTime;
-        timer.repeat=true;
-        timer.triggered.connect(cb);
-        timer.start()
+  
+    function delayT(delayTime,cb){
+        changesTimer.interval=delayTime;
+        changesTimer.repeat=true;
+        changesTimer.triggered.connect(cb);
+        changesTimer.start()
     }
 
 
@@ -167,11 +161,10 @@ Rectangle{
     function applyChanges(){
         synchronizePopup.open()
         synchronizePopup.popupMessage=i18nd("lliurex-permission-control", "Apply changes. Wait a moment...")
-        delayTimer.stop()
-        delay(500, function() {
-            if (teacherStackBridge.closePopUp){
+        delayT(500, function() {
+            if (mainStackBridge.closePopUp){
                 synchronizePopup.close(),
-                delayTimer.stop()
+                changesTimer.stop()
             }
         })
     } 
@@ -179,11 +172,10 @@ Rectangle{
     function discardChanges(){
         synchronizePopup.open()
         synchronizePopup.popupMessage=i18nd("lliurex-permission-control", "Restoring previous values. Wait a moment...")
-        delayTimer.stop()
-        delay(1000, function() {
-            if (teacherStackBridge.closePopUp){
+        delayT(1000, function() {
+            if (mainStackBridge.closePopUp){
                 synchronizePopup.close(),
-                delayTimer.stop()
+                changesTimer.stop()
 
             }
         })

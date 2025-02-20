@@ -18,7 +18,6 @@ class GatherInfo(QThread):
 	
 	#def __init__
 		
-
 	def run(self,*args):
 		
 		time.sleep(1)
@@ -29,7 +28,6 @@ class GatherInfo(QThread):
 #class GatherInfo
 
 class Bridge(QObject):
-
 
 	def __init__(self):
 
@@ -90,7 +88,6 @@ class Bridge(QObject):
 
 	#def _setCurrentOptionsStack
 
-	
 	def _getClosePopUp(self):
 
 		return self._closePopUp
@@ -136,6 +133,7 @@ class Bridge(QObject):
 				self.core.teacherStack.showTeacherChangesDialog=True
 			else:
 				self.core.studentStack.manageStudentFeedBack()
+				self.core.teacherStack.manageTeacherFeedBack()
 				self.currentOptionsStack=stack
 				self.moveToStack=""
 	

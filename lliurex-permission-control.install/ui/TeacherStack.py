@@ -43,7 +43,6 @@ class Bridge(QObject):
 		self._showTeacherSettingsMessage=[False,"","Ok"]
 		self._showTeacherChangesDialog=False
 		
-
 	#def __init__
 
 	def getTeachersConfig(self):		
@@ -114,7 +113,6 @@ class Bridge(QObject):
 	@Slot('QVariantList')
 	def manageTeachersChecked(self,value):
 
-		self.showTeacherSettingsMessage=[False,"","Ok"]
 		permissionId=value[0]
 		isEnabled=value[1]
 
@@ -130,9 +128,9 @@ class Bridge(QObject):
 	@Slot()
 	def applyTeachersChanges(self):
 
-		self.showTeacherSettingsMessage=[False,"","Ok"]
-		self.core.mainStack.closePopUp=False
 		self.showTeacherChangesDialog=False
+		self.core.mainStack.closePopUp=False
+		self.manageTeacherFeedBack()
 		self.updateTeachersInfoT=UpdateTeachersInfo(self.teachersInfo)
 		self.updateTeachersInfoT.start()
 		self.updateTeachersInfoT.finished.connect(self._updateTeachersInfoRet)
@@ -141,56 +139,64 @@ class Bridge(QObject):
 
 	def _updateTeachersInfoRet(self):
 
+		self.teacherSettingsChanged=False
+		self.getTeachersConfig()
+
 		if self.updateTeachersInfoT.ret[0]:
-			self._updateTeachersConfig()
-			time.sleep(1)
+			self.core.mainStack.closePopUp=True
 			self.showTeacherSettingsMessage=[True,self.updateTeachersInfoT.ret[1],"Ok"]
 			self.core.mainStack.closeGui=True
+			if self.core.mainStack.moveToStack!="":
+				self.manageTeacherFeedBack()
+				self.core.mainStack.manageTransitions(self.core.mainStack.moveToStack)
 		else:
+			self.core.mainStack.closePopUp=True
 			self.showTeacherSettingsMessage=[True,self.updateTeachersInfoT.ret[1],"Error"]
 			self.core.mainStack.closeGui=False
 			self.core.mainStack.moveToStack=""
-
-		if self.core.mainStack.moveToStack!="":
-			self.core.mainStack.currentOptionsStack=self.core.mainStack.moveToStack
-			self.showTeacherSettingsMessage=[False,"","Info"]
-			self.core.mainStack.moveToStack=""
-
-		self.teacherSettingsChanged=False
-		self.core.mainStack.closePopUp=True
-
 
 	#def _applyUserChanges
 
 	@Slot()
 	def cancelTeachersChanges(self):
 
-		self.showTeacherSettingsMessage=[False,"","Ok"]
 		self.core.mainStack.closePopUp=False
 		self.showTeacherChangesDialog=False
+		self.manageTeacherFeedBack()
 		self._cancelTeachersChanges()
 
 	#def cancelTeachersChanges
 
 	def _cancelTeachersChanges(self):
 
-		self._updateTeachersConfig()
+		self.getTeachersConfig()
 		self.teacherSettingsChanged=False
 		self.core.mainStack.closePopUp=True
 		if self.core.mainStack.moveToStack!="":
-			self.core.mainStack.currentOptionsStack=self.core.mainStack.moveToStack
+			self.core.mainStack.manageTransitions(self.core.mainStack.moveToStack)
 		self.core.mainStack.moveToStack=""
 		
 		self.core.mainStack.closeGui=True
 
 	#def _cancelTeachersChanges
 
-	def _updateTeachersConfig(self):
+	def _updateTeachersModelData(self):
 
-		self.teachersInfo=copy.deepcopy(Bridge.permissionMan.teachersInfo)
-		self._updateTeachersModel()
+		updateInfo=Bridge.permissionMan.teachersData
+		if len(updateInfo)>0:
+			for i in range(len(updateInfo)):
+				index=self._teachersModel.index(i)
+				self._teachersModel.setData(index,"showResult",-1)
 	
-	#def _updateTeachersConfig
+	#def _updateTeachersModelData
+
+	def manageTeacherFeedBack(self):
+
+		Bridge.permissionMan.getTeachersConfig()
+		self._updateTeachersModelData()
+		self.showTeacherSettingsMessage=[False,"","Info"]
+
+	#def manageStudentFeedBack
 
 	on_teacherSettingsChanged=Signal()
 	teacherSettingsChanged=Property(bool,_getTeacherSettingsChanged,_setTeacherSettingsChanged, notify=on_teacherSettingsChanged)

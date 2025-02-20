@@ -140,7 +140,7 @@ class Bridge(QObject):
 	def _updateStudentsInfoRet(self):
 
 		self.studentSettingsChanged=False
-		self._updateStudentsConfig()
+		self.getStudentsConfig()
 
 		if self.updateStudentsInfoT.ret[0]:
 			self.core.mainStack.closePopUp=True
@@ -169,11 +169,11 @@ class Bridge(QObject):
 
 	def _cancelStudentsChanges(self):
 
-		self._updateStudentsConfig()
+		self.getStudentsConfig()
 		self.studentSettingsChanged=False
 		self.core.mainStack.closePopUp=True
 		if self.core.mainStack.moveToStack!="":
-			self.core.mainStack.currentOptionsStack=self.core.mainStack.moveToStack
+			self.core.mainStack.manageTransitions(self.core.mainStack.moveToStack)
 		self.core.mainStack.moveToStack=""
 		
 		self.core.mainStack.closeGui=True
@@ -188,17 +188,11 @@ class Bridge(QObject):
 				index=self._studentsModel.index(i)
 				self._studentsModel.setData(index,"showResult",-1)
 	
-	#def _updateStuadenModelData
-
-	def _updateStudentsConfig(self):
-
-		self.studentsInfo=copy.deepcopy(Bridge.permissionMan.studentsInfo)
-		self._updateStudentsModel()
-	
-	#def _updateUsersConfig
+	#def _updateStudentsModelData
 
 	def manageStudentFeedBack(self):
 
+		Bridge.permissionMan.getStudentsConfig()
 		self._updateStudentsModelData()
 		self.showStudentSettingsMessage=[False,"","Info"]
 

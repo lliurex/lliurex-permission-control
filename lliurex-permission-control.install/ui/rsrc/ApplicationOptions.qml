@@ -24,7 +24,7 @@ GridLayout{
 
             MenuOptionBtn {
                 id:studentsItem
-                optionText:i18nd("lliurex-permission-control","Permission for students")
+                optionText:i18nd("lliurex-permission-control","Permission for Students")
                 optionIcon:"/usr/share/icons/breeze/actions/22/group.svg"
                 optionEnabled:true
                 Connections{
@@ -36,7 +36,7 @@ GridLayout{
 
             MenuOptionBtn {
                 id:teachersItem
-                optionText:i18nd("lliurex-permission-control","Permission for teachers")
+                optionText:i18nd("lliurex-permission-control","Permission for Teachers")
                 optionIcon:"/usr/share/icons/breeze/actions/22/user.svg"
                 visible:mainStackBridge.isAdminUser
                 Connections{

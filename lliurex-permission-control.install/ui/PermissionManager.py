@@ -46,8 +46,8 @@ class PermissionManager:
 		self.writeLog("User login in GUI: %s"%self.currentUser)
 		self.writeLog("Initial configuration:")
 		self._getInformationGroups()
-		self._getStudentsConfig()
-		self._getTeachersConfig()
+		self.getStudentsConfig()
+		self.getTeachersConfig()
 
 	#def loadConfig
 
@@ -84,7 +84,7 @@ class PermissionManager:
 
 	#def _getInformationGroups
 
-	def _getStudentsConfig(self):
+	def getStudentsConfig(self):
 
 		self.studentsData=[]
 
@@ -98,7 +98,7 @@ class PermissionManager:
 
 	#def _getDockerStatus
 
-	def _getTeachersConfig(self):
+	def getTeachersConfig(self):
 
 		self.teachersData=[]
 		
@@ -116,7 +116,7 @@ class PermissionManager:
 
 		errorCount=0
 
-		self._getStudentsConfig()
+		self.getStudentsConfig()
 		
 		for item in newConfig:
 			if newConfig[item]!=self.studentsInfo[item]:
@@ -160,48 +160,53 @@ class PermissionManager:
 
 	#def _updateStudentsData
 
-	def applyChanges(self,value):
+	def applyTeachersChanges(self,newConfig):
 
-		dockerError=False
+		errorCount=0
 
-		if value[0]!=self.currentConfig[0]:
-			dockerError=self._manageDockerPermission(value[0])
-			if not dockerError:
-				self.currentConfig[0]=value[0]
+		self.getTeachersConfig()
+		
+		for item in newConfig:
+			if newConfig[item]!=self.teachersInfo[item]:
+				if newConfig[item]:
+					self.writeLog("- Action: enable %s permissions for doc"%item)
+					cmd="perm_control -u doc -e %s"%item
+				else:
+					self.writeLog("- Action: disable %s permission for doc"%item)
+					cmd="perm_control -u doc -d %s"%item
 
-		if dockerError:
-			return [True,PermissionManager.APPLY_CHANGES_ENABLE_DOCKER_ERROR]
+				p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
+				poutput=p.communicate()[0]
+				rc=p.returncode
+				ret=poutput.decode()
+
+				if rc==0:
+					if 'enabled' in ret or 'disabled' in ret:
+						self.writeLog("- Result: Change apply successfully")
+						self.teachersInfo[item]=newConfig[item]
+						self._updateTeachersData(item,0)
+					elif 'unavailable':
+						self.writeLog("- Result: group is unavailable")
+				else:
+					self.writeLog("- Result: Failed to apply change")
+					errorCount+=1
+					self._updateTeachersData(item,1)
+	
+		if errorCount==0:
+			return [True,PermissionManager.APPLY_CHANGES_SUCCESSFUL]
 		else:
-			return [False,PermissionManager.APPLY_CHANGES_SUCCESSFUL]
+			return [False,PermissionManager.APPLY_CHANGES_ERROR]
 
-	#def applyChanges
+	#def applyStudentsChanges
 
-	def _manageDockerPermission(self,value):
+	def _updateTeachersData(self,group,showResult=-1):
 
-		if value:
-			self.writeLog("- Action: enable docker permissions")
-			cmd="perm_control -e docker"
-		else:
-			self.writeLog("- Action: disable docker permissions")
-			cmd="perm_control -d docker"
+		for item in self.teachersData:
+			if item["permissionId"]==group:
+				item["isEnabled"]=self.teachersInfo[group]
+				item["showResult"]=showResult
 
-		p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-		poutput=p.communicate()[0]
-		rc=p.returncode
-		ret=poutput.decode()
-
-		if rc==0:
-			if 'enabled' in ret or 'disabled' in ret:
-				self.writeLog("- Result: Change apply successfully")
-				return False
-			elif 'unavailable':
-				self.writeLog("- Result: group is unavailable")
-				return True
-		else:
-			self.writeLog("- Result: Failed to apply change")
-			return True
-
-	#def _manageDockerPermission
+	#def _updateStudentsData
 
 	def getSessionLang(self):
 
