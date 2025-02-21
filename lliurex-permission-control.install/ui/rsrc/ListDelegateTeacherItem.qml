@@ -63,9 +63,9 @@ Components.ListItem{
             id: resultImg
             source:{
                 if (showResult==0){
-                    "/usr/share/lliurex-permission-control/rsrc/ok.png"
+                    "/usr/share/icons/breeze/status/24/data-success.svg"
                 }else{
-                    "/usr/share/lliurex-permission-control/rsrc/error.png"
+                    "/usr/share/icons/breeze/status/24/data-error.svg"
                                  
                 }
             }

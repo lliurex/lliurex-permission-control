@@ -7,6 +7,7 @@ import signal
 import copy
 import time
 import sys
+import pwd
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
@@ -176,7 +177,7 @@ class Bridge(QObject):
 			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page='
 		
 		if not runPkexec:
-			self.helpCmd="su -c '%s' $USER"%self.helpCmd
+			self.helpCmd="su -c '%s' %s"%(self.helpCmd,os.environ["SUDO_USER"])
 		else:
 			user=pwd.getpwuid(int(os.environ["PKEXEC_UID"])).pw_name
 			self.helpCmd="su -c '%s' %s"%(self.helpCmd,user)
@@ -189,7 +190,7 @@ class Bridge(QObject):
 
 	def _openHelp(self):
 
-		os.system(self.help_cmd)
+		os.system(self.helpCmd)
 
 	#def _openHelp
 
