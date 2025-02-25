@@ -172,9 +172,9 @@ class Bridge(QObject):
 			runPkexec=True
 
 		if 'valencia' in Bridge.permissionMan.sessionLang:
-			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page='
+			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page=LliureX-Permission-Control'
 		else:
-			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page='
+			self.helpCmd='xdg-open https://wiki.edu.gva.es/lliurex/tiki-index.php?page=LliureX-Permission-Control.'
 		
 		if not runPkexec:
 			self.helpCmd="su -c '%s' %s"%(self.helpCmd,os.environ["SUDO_USER"])
