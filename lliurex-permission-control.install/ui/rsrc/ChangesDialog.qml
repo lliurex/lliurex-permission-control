@@ -21,7 +21,7 @@ Dialog {
 
     onVisibleChanged:{
         if (!this.visible && xButton){
-            if (permissionControlBridge.showChangesDialog){
+            if (studentStackBridge.showStudentChangesDialog || teacherStackBridge.showTeacherChangesDialog){
                 cancelDialogClicked()
             }
         }else{
@@ -31,7 +31,7 @@ Dialog {
 
     contentItem: Rectangle {
         color: "#ebeced"
-        implicitWidth: 400
+        implicitWidth: 500
         implicitHeight: 105
         anchors.topMargin:5
         anchors.leftMargin:5
@@ -70,8 +70,8 @@ Dialog {
             Keys.onEnterPressed: dialogApplyBtn.clicked()
             onClicked:{
                 xButton=false
+                mainStackBridge.manageSettingsDialog("Apply")
                 dialogApplyClicked()
-                permissionControlBridge.manageSettingsDialog("Accept")
             }
         }
 
@@ -92,8 +92,8 @@ Dialog {
             Keys.onEnterPressed: dialogDiscardBtn.clicked()
             onClicked:{
                 xButton=false
-                discardDialogClicked(),
-                permissionControlBridge.manageSettingsDialog("Discard")
+                mainStackBridge.manageSettingsDialog("Discard")
+                discardDialogClicked()
             }
         }
 
@@ -114,6 +114,7 @@ Dialog {
             Keys.onEnterPressed: dialogCancelBtn.clicked()
             onClicked:{
                 xButton:false
+                mainStackBridge.manageSettingsDialog("Cancel")
                 cancelDialogClicked()
             }
         }

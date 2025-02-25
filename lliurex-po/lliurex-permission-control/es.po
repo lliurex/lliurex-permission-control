@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-15 09:25+0100\n"
-"PO-Revision-Date: 2025-01-15 09:31+0100\n"
+"POT-Creation-Date: 2025-02-20 14:03+0100\n"
+"PO-Revision-Date: 2025-02-20 14:03+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -20,40 +20,46 @@ msgstr ""
 
 #: ../lliurex-permission-control.install/ui/lliurex-permission-control:18
 msgid "Lliurex-Permission-Control is now running. Wait a moment and try again."
-msgstr "Lliurex-Permission-Control se esta ejecutando. Espere un momento y pruebe otra vez."
+msgstr ""
+"Lliurex-Permission-Control se esta ejecutando. Espere un momento y pruebe "
+"otra vez."
 
 #: ../lliurex-permission-control.install/ui/lliurex-permission-control:32
 msgid "You need administration privileges to run this application."
 msgstr "Necesita permisos de administración para ejecutar esta aplicación."
 
-#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:25
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:106
-msgid "Settings"
-msgstr "Configuración"
+#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:27
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:95
+msgid "Permission for Students"
+msgstr "Permisos para Alumnos"
 
-#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:37
+#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:39
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:95
+msgid "Permission for Teachers"
+msgstr "Permisos para Profesores"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:52
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:12
-msgid "Permissions configured"
-msgstr "Permisos configurados"
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:12
+msgid "Permission available for students"
+msgstr "Permisos disponibles para Alumnos"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:44
-msgid "Allow teachers and students groups to use docker"
-msgstr "Permitir a los grupos Profesores y Alumnos usar docker"
-
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:74
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:65
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:65
 #: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:60
 msgid "Apply"
 msgstr "Aplicar"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:91
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:81
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:81
 #: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:104
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:108
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:97
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:97
 msgid ""
 "The are pending changes to apply.\n"
 "Do you want apply the changes or discard them?"
@@ -61,29 +67,50 @@ msgstr ""
 "Hay cambios pendientes de aplicar,\n"
 "¿Desea aplicar los cambios o descartarlos?"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:157
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:136
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:136
 msgid "Changes applied successfully"
 msgstr "Cambios aplicados correctamente"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:160
-msgid "Unable to activate permissions to usr docker"
-msgstr "No es posible activar los permisos para usar docker"
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:139
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:139
+msgid "An error ocurred while applying changes"
+msgstr "Se ha producido un error al aplicar los cambios"
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:163
-msgid "Unable to disable permissions to use docker"
-msgstr "No es posible desactivar los permisos para usar docker"
-
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:166
-msgid "Unable to read permissions configuration"
-msgstr "No es posible leer la configuración de los permisos"
-
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:190
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:163
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:163
 msgid "Apply changes. Wait a moment..."
 msgstr "Aplicando cambios. Espere un momento..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/Settings.qml:202
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:174
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:174
 msgid "Restoring previous values. Wait a moment..."
 msgstr "Restaurando valores anteriores. Espere un momento..."
+
+#: ../lliurex-permission-control.install/ui/rsrc/StudentList.qml:53
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherList.qml:53
+msgid "No permission found to configure"
+msgstr "No se han encontrado permisos para configurar"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:44
+msgid "Check to remove students users from this group"
+msgstr "Haga clic para eliminar usuarios del grupo Alumnos de este grupo"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:46
+msgid "Check to add studentes users to this group"
+msgstr "Haga clic para añadir los usuarios del grupo Alumnos a este grupo"
+
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:12
+msgid "Permission available for teachers"
+msgstr "Permisos disponibles para Profesores"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:44
+msgid "Check to remove teachers users from this group"
+msgstr "Haga clic para eliminar usuarios del grupo Profesores de este grupo"
+
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:46
+msgid "Check to add teachers users to this group"
+msgstr "Haga clic para añadir los usuarios del grupo Profesores a este grupo"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Loading.qml:40
 msgid "Loading. Wait a moment..."
