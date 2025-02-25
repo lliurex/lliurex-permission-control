@@ -1,0 +1,9 @@
+lliurex-permission-control (1.0) jammy; urgency=medium
+
+  [ Daniel Duran ]
+  * Created cli
+
+  [ Juan Ramon Pelegrina ]
+  * Created UI
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 25 Feb 2025 10:56:50 +0100
