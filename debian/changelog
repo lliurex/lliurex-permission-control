@@ -1,8 +1,8 @@
-lliurex-permission-control (2.0) nobe; urgency=medium
+lliurex-permission-control (2.0) noble; urgency=medium
 
-  * Test
+  * Initial release for Noble
 
- -- lliurex <lliurex@lliurex-virtualbox>  Wed, 26 Feb 2025 12:19:11 +0100
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 26 Feb 2025 12:19:11 +0100
 
 lliurex-permission-control (1.0) jammy; urgency=medium
 
