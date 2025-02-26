@@ -1,0 +1,12 @@
+./lliurex-permission-control.install/cli/perm_control
+./lliurex-permission-control.install/ui/Core.py
+./lliurex-permission-control.install/ui/lliurex-permission-control
+./lliurex-permission-control.install/ui/MainStack.py
+./lliurex-permission-control.install/ui/PermissionManager.py
+./lliurex-permission-control.install/ui/rsrc
+./lliurex-permission-control.install/ui/StudentsModel.py
+./lliurex-permission-control.install/ui/StudentStack.py
+./lliurex-permission-control.install/ui/TeachersModel.py
+./lliurex-permission-control.install/ui/TeacherStack.py
+./lliurex-permission-control.install/logrotate.d/PERMISSION-CONTROL
+./lliurex-permission-control.install/rsyslog.d/100-permission-control.conf

@@ -1,0 +1,15 @@
+lliurex-permission-control (2.0) nobe; urgency=medium
+
+  * Test
+
+ -- lliurex <lliurex@lliurex-virtualbox>  Wed, 26 Feb 2025 12:19:11 +0100
+
+lliurex-permission-control (1.0) jammy; urgency=medium
+
+  [ Daniel Duran ]
+  * Created cli
+
+  [ Juan Ramon Pelegrina ]
+  * Created UI
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 25 Feb 2025 10:56:50 +0100
