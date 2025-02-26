@@ -1,11 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQml.Models 2.8
-import org.kde.plasma.components 2.0 as Components
-import org.kde.plasma.components 3.0 as PC3
+import QtQuick
+import QtQuick.Controls
+import QtQml.Models
+import org.kde.plasma.components as PC
 
-
-Components.ListItem{
+PC.ItemDelegate{
 
     id: studentsListItem
     property string permissionId
@@ -13,21 +11,24 @@ Components.ListItem{
     property int showResult
 
     enabled:true
-
-    onContainsMouseChanged: {
-        if (containsMouse) {
-           studentsList.currentIndex = index
-        } else {
-           studentsList.currentIndex = -1
-        }
-
-    }
+    height:50
 
     Item{
         id: menuItem
         height:visible?45:0
         width:parent.width-15
-        PC3.CheckBox {
+
+        MouseArea {
+           id: mouseAreaOption
+           anchors.fill: parent
+           hoverEnabled:true
+           propagateComposedEvents:true
+
+           onEntered: {
+               studentsList.currentIndex=index
+           }
+        }
+        PC.CheckBox {
             id:permissionCheck
             checked:isEnabled
             onToggled:{

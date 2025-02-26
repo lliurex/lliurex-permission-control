@@ -1,10 +1,10 @@
-import org.kde.plasma.core 2.1 as PlasmaCore
-import org.kde.kirigami 2.16 as Kirigami
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Dialogs 1.3
-import org.kde.plasma.components 3.0 as PC3
+import org.kde.plasma.core as PlasmaCore
+import org.kde.kirigami as Kirigami
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Dialogs
+import org.kde.plasma.components as PC
 
 Rectangle{
     color:"transparent"
@@ -56,7 +56,7 @@ Rectangle{
         anchors.rightMargin:10
         spacing:10
 
-        PC3.Button {
+        PC.Button {
             id:applyBtn
             visible:true
             focus:true
@@ -72,7 +72,7 @@ Rectangle{
                 studentStackBridge.applyStudentsChanges()
             }
         }
-        PC3.Button {
+        PC.Button {
             id:cancelBtn
             visible:true
             focus:true
@@ -126,8 +126,6 @@ Rectangle{
         changesTimer.start()
     }
 
-
-    
     function getMessageText(code){
 
         var msg="";
