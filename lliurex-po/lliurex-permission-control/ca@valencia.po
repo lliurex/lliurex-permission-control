@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-20 14:03+0100\n"
-"PO-Revision-Date: 2025-02-20 14:08+0100\n"
+"PO-Revision-Date: 2025-02-26 12:32+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: ../lliurex-permission-control.install/ui/lliurex-permission-control:18
 msgid "Lliurex-Permission-Control is now running. Wait a moment and try again."
@@ -44,7 +44,7 @@ msgstr "Ajuda"
 
 #: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:12
 msgid "Permission available for students"
-msgstr "Permisos disponibles para Alumnos"
+msgstr "Permisos disponibles per a Alumnes"
 
 #: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:65
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:65
@@ -102,7 +102,7 @@ msgstr "Feu clic per a afedir usuaris del grup Alumnes a este grup"
 
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:12
 msgid "Permission available for teachers"
-msgstr "Permisos disponibles para Professors"
+msgstr "Permisos disponibles per a Professors"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:44
 msgid "Check to remove teachers users from this group"
