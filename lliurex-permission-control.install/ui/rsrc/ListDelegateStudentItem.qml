@@ -39,15 +39,8 @@ Components.ListItem{
             ToolTip.delay: 1000
             ToolTip.timeout: 3000
             ToolTip.visible: hovered
-            ToolTip.text:{
-                if (permissionCheck.checked){
-                    i18nd("lliurex-permission-control","Check to remove students users from this group")
-                }else{
-                    i18nd("lliurex-permission-control","Check to add studentes users to this group")                   
-                }
-            }
-
-        }
+            ToolTip.text:permissionCheck.checked?i18nd("lliurex-permission-control","Check to remove students users from this group"):i18nd("lliurex-permission-control","Check to add studentes users to this group")                   
+         }
 
         Text{
             id: text
