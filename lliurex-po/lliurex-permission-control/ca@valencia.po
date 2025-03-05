@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-20 14:03+0100\n"
-"PO-Revision-Date: 2025-02-26 12:32+0100\n"
+"PO-Revision-Date: 2025-03-05 17:23+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -36,7 +36,7 @@ msgstr "Permisos per Alumnes"
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:39
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:95
 msgid "Permission for Teachers"
-msgstr "Permisos para Professors"
+msgstr "Permisos per a Professors"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:52
 msgid "Help"
@@ -98,7 +98,7 @@ msgstr "Feu clic per a eliminar usuaris del grup Alumnes a este grup"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:46
 msgid "Check to add studentes users to this group"
-msgstr "Feu clic per a afedir usuaris del grup Alumnes a este grup"
+msgstr "Feu clic per a afegir usuaris del grup Alumnes a este grup"
 
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:12
 msgid "Permission available for teachers"
@@ -110,7 +110,7 @@ msgstr "Feu clic per a eliminar usuaris del grup Professors a este grup"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:46
 msgid "Check to add teachers users to this group"
-msgstr "Feu clic per a afedir usuaris del grup Professores a este grup"
+msgstr "Feu clic per a afegir usuaris del grup Professors a este grup"
 
 #: ../lliurex-permission-control.install/ui/rsrc/Loading.qml:40
 msgid "Loading. Wait a moment..."
