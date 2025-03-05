@@ -289,9 +289,7 @@ class PermissionManager:
 			cmd="id -un $PKEXEC_UID"
 			p=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
 			pkexecUser=p.communicate()[0].decode().strip()
-			print("USER:%s"%pkexecUser)
 		except Exception as e:
-			print("error")
 			pass
 
 		if pkexecUser!="root" and pkexecUser!="":
