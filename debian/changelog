@@ -1,3 +1,9 @@
+lliurex-permission-control (1.0.2) jammy; urgency=medium
+
+  * Fixed valencian translations
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 05 Mar 2025 17:51:22 +0100
+
 lliurex-permission-control (1.0.1) jammy; urgency=medium
 
   * Fixed translations
