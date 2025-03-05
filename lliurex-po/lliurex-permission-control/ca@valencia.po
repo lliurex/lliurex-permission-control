@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-20 14:03+0100\n"
-"PO-Revision-Date: 2025-03-05 17:23+0100\n"
+"PO-Revision-Date: 2025-03-05 17:38+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -31,7 +31,7 @@ msgstr "No tenieu privilegis per a executar aquesta aplicació."
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:27
 #: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:95
 msgid "Permission for Students"
-msgstr "Permisos per Alumnes"
+msgstr "Permisos per a Alumnes"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:39
 #: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:95
