@@ -37,17 +37,18 @@ PC.ItemDelegate{
             anchors.left:parent.left
             anchors.leftMargin:5
             anchors.verticalCenter:parent.verticalCenter
-            ToolTip.delay: 1000
-            ToolTip.timeout: 3000
-            ToolTip.visible: hovered
-            ToolTip.text:{
-                if (permissionCheck.checked){
-                    i18nd("lliurex-permission-control","Check to remove students users from this group")
-                }else{
-                    i18nd("lliurex-permission-control","Check to add studentes users to this group")                   
+            ToolTip{
+                id:permissionCheckToolTip
+                delay:1000
+                timeout:3000
+                visible:permissionCheck.hovered
+                text:permissionCheck.checked?i18nd("lliurex-permission-control","Check to remove students users from this group"):i18nd("lliurex-permission-control","Check to add studentes users to this group")                   
+                background:Rectangle{
+                    color:"#ffffff"
+                    border.color:"#b8b9ba"
+                    radius:5.0
                 }
             }
-
         }
 
         Text{
