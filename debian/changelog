@@ -1,3 +1,9 @@
+lliurex-permission-control (2.0.2) noble; urgency=medium
+
+  * Fixed valencian translation
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 05 Mar 2025 17:39:19 +0100
+
 lliurex-permission-control (2.0.1) noble; urgency=medium
 
   * Fixed tooltip style
