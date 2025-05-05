@@ -1,3 +1,9 @@
+lliurex-permission-control (1.0.3) jammy; urgency=medium
+
+  * Improved transitions between stacks
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 05 May 2025 14:04:35 +0200
+
 lliurex-permission-control (1.0.2) jammy; urgency=medium
 
   * Fixed valencian translations
