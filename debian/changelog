@@ -1,3 +1,9 @@
+lliurex-permission-control (2.0.3) noble; urgency=medium
+
+  * Improved transitions between stacks
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 05 May 2025 12:45:58 +0200
+
 lliurex-permission-control (2.0.2) noble; urgency=medium
 
   * Fixed valencian translation
