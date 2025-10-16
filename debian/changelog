@@ -1,3 +1,9 @@
+lliurex-permission-control (2.0.4) noble; urgency=medium
+
+  * Fixed width of menu
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 16 Oct 2025 12:20:02 +0200
+
 lliurex-permission-control (2.0.3) noble; urgency=medium
 
   * Improved transitions between stacks
