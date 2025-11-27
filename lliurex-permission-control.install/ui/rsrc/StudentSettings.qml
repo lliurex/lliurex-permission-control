@@ -3,7 +3,6 @@ import org.kde.kirigami as Kirigami
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
 import org.kde.plasma.components as PC
 
 Rectangle{
@@ -92,7 +91,6 @@ Rectangle{
 
      ChangesDialog{
         id:changesDialog
-        dialogTitle:"Lliurex Permission Control"+" - "+i18nd("lliurex-permission-control","Permission for Students")
         dialogVisible:studentStackBridge.showStudentChangesDialog
         dialogMsg:i18nd("lliurex-permission-control","The are pending changes to apply.\nDo you want apply the changes or discard them?")
         Connections{
