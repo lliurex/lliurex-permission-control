@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 14:03+0100\n"
-"PO-Revision-Date: 2025-03-05 17:38+0100\n"
+"POT-Creation-Date: 2025-11-27 10:52+0100\n"
+"PO-Revision-Date: 2025-11-27 10:52+0100\n"
 "Last-Translator: lliurex <lliurex@gva.es>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES@valencia\n"
@@ -29,12 +29,10 @@ msgid "You need administration privileges to run this application."
 msgstr "No tenieu privilegis per a executar aquesta aplicació."
 
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:27
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:95
 msgid "Permission for Students"
 msgstr "Permisos per a Alumnes"
 
 #: ../lliurex-permission-control.install/ui/rsrc/ApplicationOptions.qml:39
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:95
 msgid "Permission for Teachers"
 msgstr "Permisos per a Professors"
 
@@ -42,24 +40,24 @@ msgstr "Permisos per a Professors"
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:12
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:11
 msgid "Permission available for students"
 msgstr "Permisos disponibles per a Alumnes"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:65
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:65
-#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:60
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:64
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:64
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:54
 msgid "Apply"
 msgstr "Aplica"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:81
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:81
-#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:104
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:80
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:80
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:94
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:97
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:97
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:95
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:95
 msgid ""
 "The are pending changes to apply.\n"
 "Do you want apply the changes or discard them?"
@@ -67,40 +65,40 @@ msgstr ""
 "Hi ha canvis pendents d’aplicar.\n"
 "Voleu aplicar els canvis o descartar-los?"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:136
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:136
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:132
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:132
 msgid "Changes applied successfully"
 msgstr "Canvis aplicats correctament"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:139
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:139
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:135
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:135
 msgid "An error ocurred while applying changes"
 msgstr "S'ha produït un error en aplicar els canvis"
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:163
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:163
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:159
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:159
 msgid "Apply changes. Wait a moment..."
 msgstr "S’estan aplicant els canvis. Espereu un moment..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:174
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:174
+#: ../lliurex-permission-control.install/ui/rsrc/StudentSettings.qml:170
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:170
 msgid "Restoring previous values. Wait a moment..."
 msgstr "S’estan restaurant els valors previs. Espereu un moment..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/StudentList.qml:53
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherList.qml:53
+#: ../lliurex-permission-control.install/ui/rsrc/StudentList.qml:50
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherList.qml:50
 msgid "No permission found to configure"
 msgstr "No s'han trobat permisos per a configurar"
 
-#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:44
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:45
 msgid "Check to remove students users from this group"
 msgstr "Feu clic per a eliminar usuaris del grup Alumnes a este grup"
 
-#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:46
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateStudentItem.qml:45
 msgid "Check to add studentes users to this group"
 msgstr "Feu clic per a afegir usuaris del grup Alumnes a este grup"
 
-#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:12
+#: ../lliurex-permission-control.install/ui/rsrc/TeacherSettings.qml:11
 msgid "Permission available for teachers"
 msgstr "Permisos disponibles per a Professors"
 
@@ -108,7 +106,7 @@ msgstr "Permisos disponibles per a Professors"
 msgid "Check to remove teachers users from this group"
 msgstr "Feu clic per a eliminar usuaris del grup Professors a este grup"
 
-#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:46
+#: ../lliurex-permission-control.install/ui/rsrc/ListDelegateTeacherItem.qml:44
 msgid "Check to add teachers users to this group"
 msgstr "Feu clic per a afegir usuaris del grup Professors a este grup"
 
@@ -116,6 +114,6 @@ msgstr "Feu clic per a afegir usuaris del grup Professors a este grup"
 msgid "Loading. Wait a moment..."
 msgstr "S’està carregant. Espereu un moment..."
 
-#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:82
+#: ../lliurex-permission-control.install/ui/rsrc/ChangesDialog.qml:74
 msgid "Discard"
 msgstr "Descarta"
